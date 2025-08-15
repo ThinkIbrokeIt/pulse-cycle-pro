@@ -4,6 +4,8 @@ import { PulseScore } from "@/components/PulseScore";
 import { CycleChart } from "@/components/CycleChart";
 import { FeatureCard } from "@/components/FeatureCard";
 import { PricingCard } from "@/components/PricingCard";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 import { 
   TrendingUp, 
   BarChart3, 
@@ -12,17 +14,63 @@ import {
   Shield, 
   Database,
   ArrowRight,
-  ChevronDown
+  ChevronDown,
+  User,
+  LogOut
 } from "lucide-react";
 
 const Index = () => {
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+
   const handleGetStarted = () => {
-    // Since this requires backend functionality, we'll show the Supabase integration message
-    alert("To implement subscriptions and user accounts, please connect to Supabase using the green button in the top right.");
+    if (user) {
+      // User is logged in, can access premium features
+      alert("Welcome! Premium features coming soon.");
+    } else {
+      // Redirect to auth page
+      navigate('/auth');
+    }
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
   };
 
   return (
     <div className="min-h-screen bg-gradient-dark">
+      {/* Navigation */}
+      <nav className="container mx-auto px-6 py-6 flex justify-between items-center">
+        <div className="flex items-center">
+          <TrendingUp className="h-8 w-8 text-primary mr-2" />
+          <span className="text-xl font-bold text-foreground">PulseCycle Pro</span>
+        </div>
+        
+        {user ? (
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <User className="h-4 w-4" />
+              <span className="text-sm">{user.email}</span>
+            </div>
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={handleSignOut}
+            >
+              <LogOut className="h-4 w-4 mr-2" />
+              Sign Out
+            </Button>
+          </div>
+        ) : (
+          <Button 
+            variant="outline"
+            onClick={() => navigate('/auth')}
+          >
+            Sign In
+          </Button>
+        )}
+      </nav>
+
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-glow opacity-20"></div>
