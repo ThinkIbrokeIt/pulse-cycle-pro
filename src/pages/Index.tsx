@@ -6,6 +6,7 @@ import { FeatureCard } from "@/components/FeatureCard";
 import { PricingCard } from "@/components/PricingCard";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useSubscriptionActions } from "@/hooks/useSubscriptionActions";
 import { 
   TrendingUp, 
   BarChart3, 
@@ -22,6 +23,7 @@ import {
 const Index = () => {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
+  const { createCheckoutSession } = useSubscriptionActions();
 
   const handleGetStarted = () => {
     if (user) {
@@ -29,6 +31,16 @@ const Index = () => {
       navigate('/dashboard');
     } else {
       // Redirect to auth page
+      navigate('/auth');
+    }
+  };
+
+  const handlePlanSelect = (planType: 'free' | 'pro' | 'enterprise') => {
+    if (planType === 'free') {
+      handleGetStarted();
+    } else if (user) {
+      createCheckoutSession(planType);
+    } else {
       navigate('/auth');
     }
   };
@@ -93,7 +105,7 @@ const Index = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
-              <Button variant="hero" size="lg" className="text-lg" onClick={handleGetStarted}>
+              <Button variant="pro" size="lg" className="text-lg" onClick={handleGetStarted}>
                 Start Free Trial
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -201,7 +213,7 @@ const Index = () => {
               "Community support"
             ]}
             ctaText="Get Started Free"
-            onSelect={handleGetStarted}
+            onSelect={() => handlePlanSelect('free')}
           />
           
           <PricingCard
@@ -218,7 +230,7 @@ const Index = () => {
             ]}
             popular
             ctaText="Start Pro Trial"
-            onSelect={handleGetStarted}
+            onSelect={() => handlePlanSelect('pro')}
           />
           
           <PricingCard
@@ -234,7 +246,7 @@ const Index = () => {
               "Custom reporting"
             ]}
             ctaText="Contact Sales"
-            onSelect={handleGetStarted}
+            onSelect={() => handlePlanSelect('enterprise')}
           />
         </div>
       </div>
@@ -248,7 +260,7 @@ const Index = () => {
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
             Join 5,000+ traders using PulseCycle Pro to time their entries and exits perfectly
           </p>
-          <Button variant="hero" size="lg" className="text-lg" onClick={handleGetStarted}>
+          <Button variant="pro" size="lg" className="text-lg" onClick={handleGetStarted}>
             Start Your Free Trial
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>

@@ -54,7 +54,7 @@ export function PricingCard({
       </ul>
       
       <Button 
-        variant={popular ? "hero" : "outline"}
+        variant={popular ? "pro" : "outline"}
         className="w-full"
         onClick={onSelect}
       >
