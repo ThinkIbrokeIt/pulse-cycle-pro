@@ -25,8 +25,8 @@ const Index = () => {
 
   const handleGetStarted = () => {
     if (user) {
-      // User is logged in, can access premium features
-      alert("Welcome! Premium features coming soon.");
+      // User is logged in, redirect to dashboard
+      navigate('/dashboard');
     } else {
       // Redirect to auth page
       navigate('/auth');
