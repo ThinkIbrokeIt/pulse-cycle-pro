@@ -14,13 +14,242 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      api_usage: {
+        Row: {
+          created_at: string
+          date: string
+          endpoint: string
+          id: string
+          request_count: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          date?: string
+          endpoint: string
+          id?: string
+          request_count?: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          endpoint?: string
+          id?: string
+          request_count?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string
+          full_name: string | null
+          id: string
+          stripe_customer_id: string | null
+          subscription_tier: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email: string
+          full_name?: string | null
+          id?: string
+          stripe_customer_id?: string | null
+          subscription_tier?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string
+          full_name?: string | null
+          id?: string
+          stripe_customer_id?: string | null
+          subscription_tier?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      pulse_analytics: {
+        Row: {
+          coin_symbol: string
+          confidence_percentage: number
+          created_at: string
+          current_phase: string
+          historical_similarity: Json | null
+          id: string
+          market_cap: number | null
+          next_peak_prediction: string | null
+          price_usd: number | null
+          pulse_score: number
+          volume_24h: number | null
+        }
+        Insert: {
+          coin_symbol: string
+          confidence_percentage: number
+          created_at?: string
+          current_phase: string
+          historical_similarity?: Json | null
+          id?: string
+          market_cap?: number | null
+          next_peak_prediction?: string | null
+          price_usd?: number | null
+          pulse_score: number
+          volume_24h?: number | null
+        }
+        Update: {
+          coin_symbol?: string
+          confidence_percentage?: number
+          created_at?: string
+          current_phase?: string
+          historical_similarity?: Json | null
+          id?: string
+          market_cap?: number | null
+          next_peak_prediction?: string | null
+          price_usd?: number | null
+          pulse_score?: number
+          volume_24h?: number | null
+        }
+        Relationships: []
+      }
+      subscription_plans: {
+        Row: {
+          api_access: boolean
+          created_at: string
+          features: Json
+          historical_depth_days: number | null
+          id: string
+          max_alerts_per_day: number | null
+          max_coins: number | null
+          name: string
+          price_monthly: number
+          price_yearly: number | null
+        }
+        Insert: {
+          api_access?: boolean
+          created_at?: string
+          features?: Json
+          historical_depth_days?: number | null
+          id?: string
+          max_alerts_per_day?: number | null
+          max_coins?: number | null
+          name: string
+          price_monthly: number
+          price_yearly?: number | null
+        }
+        Update: {
+          api_access?: boolean
+          created_at?: string
+          features?: Json
+          historical_depth_days?: number | null
+          id?: string
+          max_alerts_per_day?: number | null
+          max_coins?: number | null
+          name?: string
+          price_monthly?: number
+          price_yearly?: number | null
+        }
+        Relationships: []
+      }
+      user_alerts: {
+        Row: {
+          alert_type: string
+          coin_symbol: string
+          created_at: string
+          id: string
+          is_active: boolean
+          last_triggered: string | null
+          notification_channels: string[]
+          trigger_value: number | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          alert_type: string
+          coin_symbol: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          last_triggered?: string | null
+          notification_channels?: string[]
+          trigger_value?: number | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          alert_type?: string
+          coin_symbol?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          last_triggered?: string | null
+          notification_channels?: string[]
+          trigger_value?: number | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_subscriptions: {
+        Row: {
+          created_at: string
+          current_period_end: string | null
+          current_period_start: string | null
+          id: string
+          plan_id: string
+          status: string
+          stripe_subscription_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          current_period_end?: string | null
+          current_period_start?: string | null
+          id?: string
+          plan_id: string
+          status?: string
+          stripe_subscription_id?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          current_period_end?: string | null
+          current_period_start?: string | null
+          id?: string
+          plan_id?: string
+          status?: string
+          stripe_subscription_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_subscriptions_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "subscription_plans"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_user_subscription_tier: {
+        Args: { user_uuid: string }
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
