@@ -8,6 +8,7 @@ import { PulseScore } from '@/components/PulseScore';
 import { CycleChart } from '@/components/CycleChart';
 import { usePulseAnalytics } from '@/hooks/usePulseAnalytics';
 import { useSubscription } from '@/hooks/useSubscription';
+import { useSubscriptionActions } from '@/hooks/useSubscriptionActions';
 import { 
   TrendingUp, 
   User, 
@@ -16,7 +17,8 @@ import {
   Crown,
   BarChart3,
   Bell,
-  RefreshCw
+  RefreshCw,
+  Database
 } from 'lucide-react';
 
 const Dashboard = () => {
@@ -24,6 +26,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const { analytics, loading: analyticsLoading, error, refetch } = usePulseAnalytics();
   const { userTier, subscriptionPlans, loading: subLoading } = useSubscription();
+  const { openCustomerPortal, checkSubscription, createCheckoutSession, loading: actionLoading } = useSubscriptionActions();
 
   useEffect(() => {
     if (!user) {
@@ -232,47 +235,67 @@ const Dashboard = () => {
 
           {/* Sidebar */}
           <div className="space-y-6">
-            {/* Subscription Info */}
+            {/* Subscription Management */}
             <Card className="p-6 bg-card/50 backdrop-blur border-card-border">
               <h3 className="text-lg font-semibold text-foreground mb-4">Your Plan</h3>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Current Plan</span>
-                  <Badge className={getTierColor(userTier)}>
+              
+              <div className="mb-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Badge variant="outline" className={getTierColor(userTier)}>
+                    {userTier === 'pro' && <Crown className="h-3 w-3 mr-1" />}
+                    {userTier === 'enterprise' && <Crown className="h-3 w-3 mr-1" />}
                     {getTierDisplay(userTier)}
                   </Badge>
                 </div>
-                
-                {userTier === 'free' && (
-                  <>
-                    <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">Coins Limit</span>
-                      <span className="text-foreground">3</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">Data History</span>
-                      <span className="text-foreground">24 hours</span>
-                    </div>
-                    <Button variant="default" className="w-full mt-4">
-                      <Crown className="h-4 w-4 mr-2" />
-                      Upgrade to Pro
-                    </Button>
-                  </>
-                )}
-                
-                {userTier === 'pro' && (
-                  <>
-                    <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">Coins Limit</span>
-                      <span className="text-foreground">Unlimited</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">Data History</span>
-                      <span className="text-foreground">5 years</span>
-                    </div>
-                  </>
-                )}
+                <p className="text-sm text-muted-foreground">
+                  {userTier === 'free' && 'Basic features with limited access'}
+                  {userTier === 'pro' && 'Full access to all features'}
+                  {userTier === 'enterprise' && 'Enterprise-grade features and support'}
+                </p>
               </div>
+
+              {userTier === 'free' ? (
+                <div className="space-y-3">
+                  <Button 
+                    variant="pro" 
+                    className="w-full"
+                    disabled={actionLoading}
+                    onClick={() => createCheckoutSession('pro')}
+                  >
+                    <Crown className="h-4 w-4 mr-2" />
+                    Upgrade to Pro ($19.99/mo)
+                  </Button>
+                  <Button 
+                    variant="secondary" 
+                    className="w-full"
+                    disabled={actionLoading}
+                    onClick={() => createCheckoutSession('enterprise')}
+                  >
+                    Enterprise ($499/mo)
+                  </Button>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  <Button 
+                    variant="outline" 
+                    className="w-full"
+                    disabled={actionLoading}
+                    onClick={openCustomerPortal}
+                  >
+                    Manage Subscription
+                  </Button>
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    className="w-full"
+                    disabled={actionLoading}
+                    onClick={checkSubscription}
+                  >
+                    <RefreshCw className={`h-4 w-4 mr-2 ${actionLoading ? 'animate-spin' : ''}`} />
+                    Refresh Status
+                  </Button>
+                </div>
+              )}
             </Card>
 
             {/* Quick Actions */}
@@ -280,15 +303,19 @@ const Dashboard = () => {
               <h3 className="text-lg font-semibold text-foreground mb-4">Quick Actions</h3>
               <div className="space-y-3">
                 <Button variant="outline" className="w-full justify-start">
-                  <Bell className="h-4 w-4 mr-2" />
-                  Manage Alerts
-                </Button>
-                <Button variant="outline" className="w-full justify-start">
                   <Settings className="h-4 w-4 mr-2" />
                   Account Settings
                 </Button>
                 <Button variant="outline" className="w-full justify-start">
-                  <BarChart3 className="h-4 w-4 mr-2" />
+                  <Bell className="h-4 w-4 mr-2" />
+                  Manage Alerts
+                </Button>
+                <Button 
+                  variant="outline" 
+                  className="w-full justify-start"
+                  disabled={userTier === 'free'}
+                >
+                  <Database className="h-4 w-4 mr-2" />
                   API Access
                 </Button>
               </div>
