@@ -18,6 +18,38 @@ export const useSubscriptionActions = () => {
       return;
     }
 
+    // Pro plan is now free, just update user profile directly
+    if (planType === 'pro') {
+      setLoading(true);
+      try {
+        const { error } = await supabase
+          .from('profiles')
+          .update({ 
+            subscription_tier: 'pro',
+            subscription_end: null // No end date for free plan
+          })
+          .eq('user_id', user.id);
+
+        if (error) throw error;
+
+        toast({
+          title: "Welcome to Pro!",
+          description: "You now have access to all Pro features.",
+        });
+      } catch (error) {
+        console.error('Error upgrading to Pro:', error);
+        toast({
+          variant: "destructive",
+          title: "Upgrade Error",
+          description: "Failed to upgrade to Pro. Please try again.",
+        });
+      } finally {
+        setLoading(false);
+      }
+      return;
+    }
+
+    // Enterprise still requires checkout
     setLoading(true);
     try {
       const { data, error } = await supabase.functions.invoke('create-checkout', {

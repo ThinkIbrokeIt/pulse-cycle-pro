@@ -218,7 +218,7 @@ const Index = () => {
           
           <PricingCard
             title="Pro"
-            price="$19.99"
+            price="Free"
             description="For serious traders"
             features={[
               "Unlimited coin tracking",
@@ -229,7 +229,7 @@ const Index = () => {
               "Priority support"
             ]}
             popular
-            ctaText="Start Pro Trial"
+            ctaText="Get Pro Access"
             onSelect={() => handlePlanSelect('pro')}
           />
           
