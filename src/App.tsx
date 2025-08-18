@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import PulseInsight from "./pages/PulseInsight";
+import Community from "./pages/Community";
 import EmbedPage from "./pages/EmbedPage";
 import NotFound from "./pages/NotFound";
 
@@ -19,6 +20,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/pulse-insight" element={<PulseInsight />} />
+          <Route path="/community" element={<Community />} />
           <Route path="/embed" element={<EmbedPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

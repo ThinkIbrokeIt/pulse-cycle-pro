@@ -14,7 +14,8 @@ import {
   ChevronDown,
   Search,
   Navigation,
-  Code
+  Code,
+  Users
 } from "lucide-react";
 
 const Index = () => {
@@ -31,6 +32,12 @@ const Index = () => {
             <Button variant="ghost" className="hidden md:flex items-center gap-2">
               <Code className="h-4 w-4" />
               Embed
+            </Button>
+          </Link>
+          <Link to="/community">
+            <Button variant="ghost" className="hidden md:flex items-center gap-2">
+              <Users className="h-4 w-4" />
+              Community
             </Button>
           </Link>
           <Link to="/pulse-insight">
@@ -67,6 +74,12 @@ const Index = () => {
               <Link to="/pulse-insight">
                 <Button variant="pro" size="lg" className="text-lg">
                   Start Using PulseCycle Pro
+                </Button>
+              </Link>
+              <Link to="/community">
+                <Button variant="outline" size="lg" className="text-lg">
+                  <Users className="mr-2 h-5 w-5" />
+                  Join Community
                 </Button>
               </Link>
             </div>
