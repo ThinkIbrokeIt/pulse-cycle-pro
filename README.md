@@ -1,73 +1,114 @@
-# Welcome to your Lovable project
+# PulseChain Community Hub 🫀
 
-## Project info
+## Empowering Our Community Through Knowledge and Protection
 
-**URL**: https://lovable.dev/projects/fc1d13f8-ee12-4f3c-a344-f4d88c19b66a
+Welcome to the **PulseChain Community Hub** - your comprehensive platform for staying informed, protected, and connected within the PulseChain ecosystem. We're building the tools and community needed to achieve true decentralization while protecting each other from bad actors.
 
-## How can I edit this code?
+## 🎯 Our Mission
 
-There are several ways of editing your application.
+**Defending Decentralization** - We believe in the vision of decentralized finance and are committed to protecting our community from those who seek to destroy it. Our platform provides real-time monitoring, analysis, and community-driven protection against scams and manipulation.
 
-**Use Lovable**
+**Current Goal: Zero Rug Month** - We're working together to achieve our first month without any rug pulls in the PulseChain ecosystem.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/fc1d13f8-ee12-4f3c-a344-f4d88c19b66a) and start prompting.
+## 🚀 Platform Features
 
-Changes made via Lovable will be committed automatically to this repo.
+### 📊 Pulse Insight
+- **Real-time token analysis** using DexScreener API integration
+- **Market sentiment tracking** and price movements
+- **Token search and discovery** for all PulseChain assets
+- **Trending tokens** with comprehensive analytics
 
-**Use your preferred IDE**
+### 👥 Community Hub
+- **Social media monitoring** - Track mentions of PulseChain across platforms
+- **Sentiment analysis** - Identify positive and negative discussions
+- **Community defense** - Organize responses to FUD and misinformation
+- **News and events** - Stay updated on ecosystem developments
+- **Discussion forums** - Engage with fellow community members
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 🛡️ Meme Coin Security Center
+- **Rug pull tracking** - Complete database of recent scams
+- **Scammer analysis** - Detailed breakdowns of tactics and wallet addresses
+- **Days since last rug counter** - Community accountability metrics
+- **Prevention education** - Learn to identify red flags before investing
+- **Wallet forensics** - Track connections between malicious actors
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🔧 Technology Stack
 
-Follow these steps:
+Built with modern, reliable technologies:
 
+- **Frontend**: React + TypeScript + Vite
+- **Styling**: Tailwind CSS + shadcn/ui components
+- **Backend**: Supabase (Database, Auth, Edge Functions)
+- **APIs**: DexScreener for real-time token data
+- **Deployment**: Lovable platform with custom domain support
+
+## 🎯 Community Goals
+
+1. **📈 Achieve Zero Rug Month** - Our first milestone toward a scam-free ecosystem
+2. **🔍 100% Transparency** - Track every project, every launch, every outcome
+3. **🛡️ Community Protection** - Educate and defend against malicious actors
+4. **📢 Unified Voice** - Coordinate responses to FUD and misinformation
+5. **🌟 Ecosystem Growth** - Support legitimate projects and innovation
+
+## 🚀 Getting Started
+
+### For Users
+1. Visit our platform at [your-domain.com]
+2. Explore the latest token insights
+3. Join community discussions
+4. Report suspicious activity
+5. Help protect fellow community members
+
+### For Developers
+
+#### Prerequisites
+- Node.js & npm installed ([install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating))
+
+#### Setup
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
+# Clone the repository
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Navigate to project directory
+cd pulsechain-community-hub
 
-# Step 3: Install the necessary dependencies.
+# Install dependencies
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## 🤝 Contributing
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+We welcome contributions from the community! Whether you're:
+- **Reporting scams** and suspicious activity
+- **Sharing news** and updates
+- **Contributing code** improvements
+- **Helping educate** new community members
 
-**Use GitHub Codespaces**
+Every contribution helps strengthen our ecosystem.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 📞 Community Support
 
-## What technologies are used for this project?
+- **Platform Issues**: Report through our community forum
+- **Scam Reports**: Use our security reporting system
+- **General Discussion**: Join our community hub
+- **Development**: Contribute via GitHub
 
-This project is built with:
+## 🔮 Roadmap
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **Phase 1**: ✅ Core platform launch with monitoring tools
+- **Phase 2**: 🔄 Advanced analytics and ML-powered scam detection
+- **Phase 3**: 🔄 Mobile app for on-the-go community protection
+- **Phase 4**: 🔄 Cross-chain expansion and partnerships
 
-## How can I deploy this project?
+## 📜 License
 
-Simply open [Lovable](https://lovable.dev/projects/fc1d13f8-ee12-4f3c-a344-f4d88c19b66a) and click on Share -> Publish.
+This project is open source and available under the MIT License.
 
-## Can I connect a custom domain to my Lovable project?
+---
 
-Yes, you can!
+**Together, we build a stronger, safer PulseChain ecosystem. 🫀**
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+*Remember: Always DYOR (Do Your Own Research) and never invest more than you can afford to lose.*
