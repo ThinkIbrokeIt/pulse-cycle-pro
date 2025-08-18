@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { PulseScore } from "@/components/PulseScore";
 import { CycleChart } from "@/components/CycleChart";
 import { FeatureCard } from "@/components/FeatureCard";
+import { Link } from "react-router-dom";
 import { 
   TrendingUp, 
   BarChart3, 
@@ -10,7 +11,10 @@ import {
   Zap, 
   Shield, 
   Database,
-  ChevronDown
+  ChevronDown,
+  Search,
+  Navigation,
+  Code
 } from "lucide-react";
 
 const Index = () => {
@@ -18,9 +22,23 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-dark">
       {/* Navigation */}
       <nav className="container mx-auto px-6 py-6 flex justify-between items-center">
-        <div className="flex items-center">
+        <Link to="/" className="flex items-center">
           <TrendingUp className="h-8 w-8 text-primary mr-2" />
           <span className="text-xl font-bold text-foreground">PulseCycle Pro</span>
+        </Link>
+        <div className="flex items-center gap-4">
+          <Link to="/embed">
+            <Button variant="ghost" className="hidden md:flex items-center gap-2">
+              <Code className="h-4 w-4" />
+              Embed
+            </Button>
+          </Link>
+          <Link to="/pulse-insight">
+            <Button variant="outline" className="flex items-center gap-2">
+              <Search className="h-4 w-4" />
+              Pulse Insight
+            </Button>
+          </Link>
         </div>
       </nav>
 
@@ -46,9 +64,11 @@ const Index = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
-              <Button variant="pro" size="lg" className="text-lg">
-                Start Using PulseCycle Pro
-              </Button>
+              <Link to="/pulse-insight">
+                <Button variant="pro" size="lg" className="text-lg">
+                  Start Using PulseCycle Pro
+                </Button>
+              </Link>
             </div>
             
             <div className="mt-12 text-center">
@@ -194,9 +214,11 @@ const Index = () => {
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
             Join thousands of traders using PulseCycle Pro to time their entries and exits perfectly - completely free!
           </p>
-          <Button variant="pro" size="lg" className="text-lg">
-            Access PulseCycle Pro Now
-          </Button>
+          <Link to="/pulse-insight">
+            <Button variant="pro" size="lg" className="text-lg">
+              Access PulseCycle Pro Now
+            </Button>
+          </Link>
         </Card>
       </div>
 
