@@ -3,10 +3,6 @@ import { Card } from "@/components/ui/card";
 import { PulseScore } from "@/components/PulseScore";
 import { CycleChart } from "@/components/CycleChart";
 import { FeatureCard } from "@/components/FeatureCard";
-import { PricingCard } from "@/components/PricingCard";
-import { useAuth } from "@/contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
-import { useSubscriptionActions } from "@/hooks/useSubscriptionActions";
 import { 
   TrendingUp, 
   BarChart3, 
@@ -14,41 +10,10 @@ import {
   Zap, 
   Shield, 
   Database,
-  ArrowRight,
-  ChevronDown,
-  User,
-  LogOut
+  ChevronDown
 } from "lucide-react";
 
 const Index = () => {
-  const { user, signOut } = useAuth();
-  const navigate = useNavigate();
-  const { createCheckoutSession } = useSubscriptionActions();
-
-  const handleGetStarted = () => {
-    if (user) {
-      // User is logged in, redirect to dashboard
-      navigate('/dashboard');
-    } else {
-      // Redirect to auth page
-      navigate('/auth');
-    }
-  };
-
-  const handlePlanSelect = (planType: 'free' | 'pro' | 'enterprise') => {
-    if (planType === 'free') {
-      handleGetStarted();
-    } else if (user) {
-      createCheckoutSession(planType);
-    } else {
-      navigate('/auth');
-    }
-  };
-
-  const handleSignOut = async () => {
-    await signOut();
-  };
-
   return (
     <div className="min-h-screen bg-gradient-dark">
       {/* Navigation */}
@@ -57,30 +22,6 @@ const Index = () => {
           <TrendingUp className="h-8 w-8 text-primary mr-2" />
           <span className="text-xl font-bold text-foreground">PulseCycle Pro</span>
         </div>
-        
-        {user ? (
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <User className="h-4 w-4" />
-              <span className="text-sm">{user.email}</span>
-            </div>
-            <Button 
-              variant="outline" 
-              size="sm"
-              onClick={handleSignOut}
-            >
-              <LogOut className="h-4 w-4 mr-2" />
-              Sign Out
-            </Button>
-          </div>
-        ) : (
-          <Button 
-            variant="outline"
-            onClick={() => navigate('/auth')}
-          >
-            Sign In
-          </Button>
-        )}
       </nav>
 
       {/* Hero Section */}
@@ -101,16 +42,12 @@ const Index = () => {
             </h1>
             
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto animate-slide-up">
-              Advanced cycle analytics for PulseChain. Predict market peaks with 92% accuracy using ML-powered historical pattern recognition.
+              Advanced cycle analytics for PulseChain. Predict market peaks with 92% accuracy using ML-powered historical pattern recognition. Completely free for the community.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
-              <Button variant="pro" size="lg" className="text-lg" onClick={handleGetStarted}>
-                Start Free Trial
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button variant="outline" size="lg" className="text-lg">
-                View Demo Dashboard
+              <Button variant="pro" size="lg" className="text-lg">
+                Start Using PulseCycle Pro
               </Button>
             </div>
             
@@ -190,64 +127,61 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Pricing Section */}
+      {/* Community Section */}
       <div className="container mx-auto px-6 py-20">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-foreground mb-4">
-            Choose Your Plan
+            Free for the Community
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Start free and upgrade as your trading strategy evolves
+            PulseCycle Pro is completely free to help the PulseChain community make better trading decisions
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <PricingCard
-            title="Basic"
-            price="Free"
-            description="Perfect for getting started"
-            features={[
-              "3 coins tracking",
-              "24h data history",
-              "Basic PulseScore",
-              "Community support"
-            ]}
-            ctaText="Get Started Free"
-            onSelect={() => handlePlanSelect('free')}
-          />
-          
-          <PricingCard
-            title="Pro"
-            price="Free"
-            description="For serious traders"
-            features={[
-              "Unlimited coin tracking",
-              "5 years historical data",
-              "Advanced analytics",
-              "5 alerts per day",
-              "CSV/JSON exports",
-              "Priority support"
-            ]}
-            popular
-            ctaText="Get Pro Access"
-            onSelect={() => handlePlanSelect('pro')}
-          />
-          
-          <PricingCard
-            title="Enterprise"
-            price="$499"
-            description="For institutions"
-            features={[
-              "Full API access",
-              "Custom ML models",
-              "Unlimited alerts",
-              "Webhook integrations",
-              "24/7 SLA support",
-              "Custom reporting"
-            ]}
-            ctaText="Contact Sales"
-            onSelect={() => handlePlanSelect('enterprise')}
-          />
+        <div className="max-w-4xl mx-auto">
+          <Card className="p-8 bg-gradient-glow border-primary/30">
+            <div className="text-center">
+              <h3 className="text-2xl font-bold text-foreground mb-4">All Features Included</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                    <span className="text-foreground">Unlimited coin tracking</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                    <span className="text-foreground">5 years historical data</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                    <span className="text-foreground">Advanced PulseScore™ analytics</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                    <span className="text-foreground">Real-time alerts</span>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                    <span className="text-foreground">CSV/JSON data exports</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                    <span className="text-foreground">API access</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                    <span className="text-foreground">Community support</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                    <span className="text-foreground">No limits, no restrictions</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
         </div>
       </div>
 
@@ -258,11 +192,10 @@ const Index = () => {
             Ready to Master PulseChain Cycles?
           </h2>
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Join 5,000+ traders using PulseCycle Pro to time their entries and exits perfectly
+            Join thousands of traders using PulseCycle Pro to time their entries and exits perfectly - completely free!
           </p>
-          <Button variant="pro" size="lg" className="text-lg" onClick={handleGetStarted}>
-            Start Your Free Trial
-            <ArrowRight className="ml-2 h-5 w-5" />
+          <Button variant="pro" size="lg" className="text-lg">
+            Access PulseCycle Pro Now
           </Button>
         </Card>
       </div>
