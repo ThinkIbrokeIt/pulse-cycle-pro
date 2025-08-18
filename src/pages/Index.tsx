@@ -40,6 +40,12 @@ const Index = () => {
               Community
             </Button>
           </Link>
+          <Link to="/meme-coins">
+            <Button variant="ghost" className="hidden md:flex items-center gap-2">
+              <Shield className="h-4 w-4" />
+              Meme Security
+            </Button>
+          </Link>
           <Link to="/pulse-insight">
             <Button variant="outline" className="flex items-center gap-2">
               <Search className="h-4 w-4" />
@@ -80,6 +86,12 @@ const Index = () => {
                 <Button variant="outline" size="lg" className="text-lg">
                   <Users className="mr-2 h-5 w-5" />
                   Join Community
+                </Button>
+              </Link>
+              <Link to="/meme-coins">
+                <Button variant="glow" size="lg" className="text-lg">
+                  <Shield className="mr-2 h-5 w-5" />
+                  Meme Coin Security
                 </Button>
               </Link>
             </div>
