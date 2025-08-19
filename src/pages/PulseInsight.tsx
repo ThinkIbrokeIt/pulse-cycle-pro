@@ -36,6 +36,7 @@ interface CoinData {
   currentPhase: 'Accumulation' | 'Uptrend' | 'Distribution' | 'Downtrend';
   nextPeak: string;
   confidence: number;
+  insight?: string;
   aiInsight: string;
 }
 
@@ -146,25 +147,44 @@ const PulseInsight = () => {
   const generateAIInsight = async (coin: CoinData) => {
     setAiLoading(true);
     
-    // Simulate AI insight generation with Deepseek
-    setTimeout(() => {
+    try {
+      // Call the AI insight edge function
+      const { data, error } = await supabase.functions.invoke('ai-insight', {
+        body: { coin }
+      });
+
+      if (error) throw error;
+
+      if (data?.insight) {
+        // Update the coin data with the new AI insight
+        setSelectedCoin(prev => prev ? { ...prev, aiInsight: data.insight } : null);
+        toast.success('AI insight updated with latest data');
+      }
+    } catch (error) {
+      console.error('Error generating AI insight:', error);
+      toast.error('Failed to generate AI insight. Please try again.');
+    } finally {
       setAiLoading(false);
-      toast.success('AI insight updated with latest data');
-    }, 2000);
+    }
   };
 
-  const handleShare = () => {
+  const handleShare = async () => {
     if (selectedCoin) {
-      const shareUrl = `${window.location.origin}/pulse-insight?token=${selectedCoin.symbol}`;
-      const shareText = `Check out ${selectedCoin.name} (${selectedCoin.symbol}) analysis on PulseCycle Pro: PulseScore ${selectedCoin.pulseScore}, ${selectedCoin.currentPhase} phase. AI predicts ${selectedCoin.confidence}% confidence for next peak on ${selectedCoin.nextPeak}. ${shareUrl}`;
-      
-      navigator.clipboard.writeText(shareText);
-      toast.success('Analysis link copied to clipboard');
-      
-      track('token_shared', { 
-        token: selectedCoin.symbol,
-        method: 'clipboard'
-      });
+      try {
+        const shareUrl = `${window.location.origin}/pulse-insight?token=${selectedCoin.symbol}`;
+        const shareText = `Check out ${selectedCoin.name} (${selectedCoin.symbol}) analysis on PulseCycle Pro: PulseScore ${selectedCoin.pulseScore}, ${selectedCoin.currentPhase} phase. AI predicts ${selectedCoin.confidence}% confidence for next peak on ${selectedCoin.nextPeak}. ${shareUrl}`;
+        
+        await navigator.clipboard.writeText(shareText);
+        toast.success('Analysis link copied to clipboard');
+        
+        track('token_shared', { 
+          token: selectedCoin.symbol,
+          method: 'clipboard'
+        });
+      } catch (error) {
+        console.error('Failed to copy share link:', error);
+        toast.error('Failed to copy share link. Please try again.');
+      }
     }
   };
 

@@ -73,9 +73,14 @@ const EmbedPage = () => {
 </iframe>`;
   };
 
-  const copyEmbedCode = () => {
-    navigator.clipboard.writeText(generateEmbedCode());
-    toast.success('Embed code copied to clipboard');
+  const copyEmbedCode = async () => {
+    try {
+      await navigator.clipboard.writeText(generateEmbedCode());
+      toast.success('Embed code copied to clipboard');
+    } catch (error) {
+      console.error('Failed to copy embed code:', error);
+      toast.error('Failed to copy embed code. Please try again.');
+    }
   };
 
   return (
