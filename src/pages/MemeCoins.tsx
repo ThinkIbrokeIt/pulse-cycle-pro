@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Progress } from '@/components/ui/progress';
+import { toast } from 'sonner';
 import { 
   Shield, 
   AlertTriangle, 
@@ -111,6 +112,40 @@ const MOCK_MEME_TOKENS: MemeToken[] = [
 export default function MemeCoins() {
   const [daysSinceLastRug, setDaysSinceLastRug] = useState(4);
   const [selectedRuggedCoin, setSelectedRuggedCoin] = useState<RuggedCoin | null>(null);
+  const [isTrackingWallets, setIsTrackingWallets] = useState(false);
+  const [suspiciousWallets, setSuspiciousWallets] = useState<string[]>([]);
+
+  // Initialize with some mock suspicious wallets
+  useEffect(() => {
+    setSuspiciousWallets([
+      '0x1234567890abcdef1234567890abcdef12345678',
+      '0x9876543210fedcba9876543210fedcba98765432',
+      '0xabcdef1234567890abcdef1234567890abcdef12'
+    ]);
+  }, []);
+
+  const handleTrackWallets = async () => {
+    setIsTrackingWallets(true);
+    
+    try {
+      // Simulate API call to start wallet tracking
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      toast.success('Wallet tracking activated! You will receive alerts for suspicious activities.');
+      
+      // Add some mock tracking data
+      setSuspiciousWallets(prev => [
+        ...prev,
+        `0x${Math.random().toString(16).substring(2, 42)}`
+      ]);
+      
+    } catch (error) {
+      console.error('Failed to start wallet tracking:', error);
+      toast.error('Failed to activate wallet tracking. Please try again.');
+    } finally {
+      setIsTrackingWallets(false);
+    }
+  };
 
   const getRiskColor = (score: number) => {
     if (score < 30) return 'text-green-600';
@@ -393,16 +428,26 @@ export default function MemeCoins() {
                   <p className="text-sm text-muted-foreground mb-4">
                     Monitor known scammer wallets and their activities
                   </p>
-                  <Button className="w-full">
-                    Track Suspicious Wallets
+                  <Button 
+                    className="w-full" 
+                    onClick={handleTrackWallets}
+                    disabled={isTrackingWallets}
+                  >
+                    {isTrackingWallets ? 'Activating...' : 'Track Suspicious Wallets'}
                   </Button>
                   <div className="mt-4 p-3 bg-muted rounded">
-                    <div className="text-xs text-muted-foreground">Recent Alerts:</div>
-                    <div className="text-sm mt-1">
-                      • 0x1234...5678 created new token
-                    </div>
-                    <div className="text-sm">
-                      • 0x9876...5432 large sell detected
+                    <div className="text-xs text-muted-foreground">Tracking {suspiciousWallets.length} suspicious wallets:</div>
+                    <div className="space-y-1 mt-2 max-h-20 overflow-y-auto">
+                      {suspiciousWallets.slice(0, 3).map((wallet, index) => (
+                        <div key={index} className="text-xs font-mono">
+                          {wallet.substring(0, 6)}...{wallet.substring(wallet.length - 4)}
+                        </div>
+                      ))}
+                      {suspiciousWallets.length > 3 && (
+                        <div className="text-xs text-muted-foreground">
+                          +{suspiciousWallets.length - 3} more
+                        </div>
+                      )}
                     </div>
                   </div>
                 </CardContent>
