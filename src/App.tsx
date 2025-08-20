@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import PulseInsight from "./pages/PulseInsight";
 import Community from "./pages/Community";
 import MemeCoins from "./pages/MemeCoins";
+import TrustlessLocks from "./pages/TrustlessLocks";
 import EmbedPage from "./pages/EmbedPage";
 import NotFound from "./pages/NotFound";
 
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/pulse-insight" element={<PulseInsight />} />
           <Route path="/community" element={<Community />} />
           <Route path="/meme-coins" element={<MemeCoins />} />
+          <Route path="/trustless-locks" element={<TrustlessLocks />} />
           <Route path="/embed" element={<EmbedPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

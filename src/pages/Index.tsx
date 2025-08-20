@@ -15,7 +15,8 @@ import {
   Search,
   Navigation,
   Code,
-  Users
+  Users,
+  Lock
 } from "lucide-react";
 
 const Index = () => {
@@ -92,6 +93,12 @@ const Index = () => {
                 <Button variant="glow" size="lg" className="text-lg">
                   <Shield className="mr-2 h-5 w-5" />
                   Meme Coin Security
+                </Button>
+              </Link>
+              <Link to="/trustless-locks">
+                <Button variant="outline" size="lg" className="text-lg">
+                  <Lock className="mr-2 h-5 w-5" />
+                  Trustless Locks
                 </Button>
               </Link>
             </div>

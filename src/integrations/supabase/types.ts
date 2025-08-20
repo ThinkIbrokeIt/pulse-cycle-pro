@@ -41,6 +41,190 @@ export type Database = {
         }
         Relationships: []
       }
+      lock_contracts: {
+        Row: {
+          beneficiary_address: string
+          contract_address: string
+          contract_type: string
+          created_at: string
+          id: string
+          is_multisig: boolean
+          lock_amount: number
+          lock_duration_days: number
+          required_signatures: number | null
+          status: string
+          token_address: string
+          token_symbol: string
+          unlock_date: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          beneficiary_address: string
+          contract_address: string
+          contract_type?: string
+          created_at?: string
+          id?: string
+          is_multisig?: boolean
+          lock_amount: number
+          lock_duration_days: number
+          required_signatures?: number | null
+          status?: string
+          token_address: string
+          token_symbol: string
+          unlock_date: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          beneficiary_address?: string
+          contract_address?: string
+          contract_type?: string
+          created_at?: string
+          id?: string
+          is_multisig?: boolean
+          lock_amount?: number
+          lock_duration_days?: number
+          required_signatures?: number | null
+          status?: string
+          token_address?: string
+          token_symbol?: string
+          unlock_date?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      lock_templates: {
+        Row: {
+          created_at: string
+          default_duration_days: number
+          description: string | null
+          features: Json
+          id: string
+          is_active: boolean
+          is_multisig_required: boolean
+          max_duration_days: number
+          min_duration_days: number
+          name: string
+          security_score: number
+          template_type: string
+        }
+        Insert: {
+          created_at?: string
+          default_duration_days: number
+          description?: string | null
+          features?: Json
+          id?: string
+          is_active?: boolean
+          is_multisig_required?: boolean
+          max_duration_days: number
+          min_duration_days: number
+          name: string
+          security_score?: number
+          template_type: string
+        }
+        Update: {
+          created_at?: string
+          default_duration_days?: number
+          description?: string | null
+          features?: Json
+          id?: string
+          is_active?: boolean
+          is_multisig_required?: boolean
+          max_duration_days?: number
+          min_duration_days?: number
+          name?: string
+          security_score?: number
+          template_type?: string
+        }
+        Relationships: []
+      }
+      lock_transactions: {
+        Row: {
+          amount: number
+          block_number: number | null
+          contract_id: string
+          created_at: string
+          gas_price: number | null
+          gas_used: number | null
+          id: string
+          transaction_hash: string
+          transaction_type: string
+        }
+        Insert: {
+          amount: number
+          block_number?: number | null
+          contract_id: string
+          created_at?: string
+          gas_price?: number | null
+          gas_used?: number | null
+          id?: string
+          transaction_hash: string
+          transaction_type: string
+        }
+        Update: {
+          amount?: number
+          block_number?: number | null
+          contract_id?: string
+          created_at?: string
+          gas_price?: number | null
+          gas_used?: number | null
+          id?: string
+          transaction_hash?: string
+          transaction_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lock_transactions_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "lock_contracts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lock_verifications: {
+        Row: {
+          comments: string | null
+          contract_id: string
+          created_at: string
+          id: string
+          is_verified: boolean
+          rating: number
+          user_id: string
+          verification_type: string
+        }
+        Insert: {
+          comments?: string | null
+          contract_id: string
+          created_at?: string
+          id?: string
+          is_verified?: boolean
+          rating: number
+          user_id: string
+          verification_type: string
+        }
+        Update: {
+          comments?: string | null
+          contract_id?: string
+          created_at?: string
+          id?: string
+          is_verified?: boolean
+          rating?: number
+          user_id?: string
+          verification_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lock_verifications_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "lock_contracts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -157,6 +341,50 @@ export type Database = {
           price_yearly?: number | null
         }
         Relationships: []
+      }
+      token_locks: {
+        Row: {
+          amount_locked: number
+          community_vote_threshold: number | null
+          contract_id: string
+          created_at: string
+          id: string
+          is_emergency_unlockable: boolean
+          lock_type: string
+          percentage_of_supply: number | null
+          unlock_schedule: Json | null
+        }
+        Insert: {
+          amount_locked: number
+          community_vote_threshold?: number | null
+          contract_id: string
+          created_at?: string
+          id?: string
+          is_emergency_unlockable?: boolean
+          lock_type: string
+          percentage_of_supply?: number | null
+          unlock_schedule?: Json | null
+        }
+        Update: {
+          amount_locked?: number
+          community_vote_threshold?: number | null
+          contract_id?: string
+          created_at?: string
+          id?: string
+          is_emergency_unlockable?: boolean
+          lock_type?: string
+          percentage_of_supply?: number | null
+          unlock_schedule?: Json | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "token_locks_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "lock_contracts"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_alerts: {
         Row: {
