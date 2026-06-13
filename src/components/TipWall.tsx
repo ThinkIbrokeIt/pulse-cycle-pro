@@ -13,13 +13,13 @@ interface TipWallProps {
 
 const TIER_PREMIMS = [
   { name: "Supporter", min: 1, icon: Heart, perks: ["Basic PulseScore", "3 coin searches/day"] },
-  { name: "Power User", min: 100, icon: Zap, perks: ["Unlimited searches", "ML predictions", "CSV export"] },
-  { name: "Whale", min: 500, icon: Crown, perks: ["All Power User perks", "API access", "Custom alerts", "Priority support"] },
+  { name: "Power User", min: 1, icon: Zap, perks: ["Unlimited searches", "ML predictions", "CSV export"] },
+  { name: "Whale", min: 1, icon: Crown, perks: ["All Power User perks", "API access", "Custom alerts", "Priority support"] },
 ];
 
 export function TipWall({ isOpen, onClose, onUnlock }: TipWallProps) {
   const { address, isConnected, balance, tipSent, tipAmount, sendTip, isSending, isChecking } = useWallet();
-  const [selectedAmount, setSelectedAmount] = useState(100);
+  const [selectedAmount, setSelectedAmount] = useState(1);
   const [customAmount, setCustomAmount] = useState("");
   const [copied, setCopied] = useState(false);
 
@@ -119,7 +119,7 @@ export function TipWall({ isOpen, onClose, onUnlock }: TipWallProps) {
                 <>
                   {/* Amount selector */}
                   <div className="flex gap-2">
-                    {[10, 50, 100, 500].map((amt) => (
+                    {[1, 5, 10, 50].map((amt) => (
                       <Button
                         key={amt}
                         variant={selectedAmount === amt ? "pro" : "outline"}

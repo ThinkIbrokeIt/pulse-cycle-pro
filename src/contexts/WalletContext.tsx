@@ -7,7 +7,7 @@ import { parseEther } from "viem";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const DONATION_ADDRESS = "0x45bb318ae758c1bb8074389d899cb25468e18d09";
-const TIP_THRESHOLD_PLS = 100;
+const TIP_THRESHOLD_PLS = 1; // testing mode — real tiers TBD
 
 const queryClient = new QueryClient();
 
