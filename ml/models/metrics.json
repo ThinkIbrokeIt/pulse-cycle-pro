@@ -1,0 +1,85 @@
+{
+  "accuracy": 0.8918918918918919,
+  "cv_mean": 0.9180596142606662,
+  "cv_std": 0.03244459453498171,
+  "n_train": 292,
+  "n_test": 74,
+  "n_features": 57,
+  "phases": [
+    "accumulation",
+    "bottom",
+    "dump",
+    "peak",
+    "pump"
+  ],
+  "classification_report": {
+    "accumulation": {
+      "precision": 0.8076923076923077,
+      "recall": 0.9545454545454546,
+      "f1-score": 0.875,
+      "support": 22.0
+    },
+    "bottom": {
+      "precision": 0.6666666666666666,
+      "recall": 1.0,
+      "f1-score": 0.8,
+      "support": 2.0
+    },
+    "dump": {
+      "precision": 1.0,
+      "recall": 0.8378378378378378,
+      "f1-score": 0.9117647058823529,
+      "support": 37.0
+    },
+    "peak": {
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1-score": 0.6666666666666666,
+      "support": 2.0
+    },
+    "pump": {
+      "precision": 0.8461538461538461,
+      "recall": 1.0,
+      "f1-score": 0.9166666666666666,
+      "support": 11.0
+    },
+    "accuracy": 0.8918918918918919,
+    "macro avg": {
+      "precision": 0.864102564102564,
+      "recall": 0.8584766584766583,
+      "f1-score": 0.8340196078431372,
+      "support": 74.0
+    },
+    "weighted avg": {
+      "precision": 0.910949410949411,
+      "recall": 0.8918918918918919,
+      "f1-score": 0.8919183889772124,
+      "support": 74.0
+    }
+  },
+  "feature_importance": {
+    "fear_greed_proxy": 0.12156419486813566,
+    "rsi": 0.09438752490070403,
+    "price_change_24h": 0.07895941763220012,
+    "cycle_position": 0.0698770356518376,
+    "volume_price_trend": 0.06947254237341038,
+    "price_vs_ma30": 0.06884950585968926,
+    "macd": 0.04913682508906584,
+    "bb_position": 0.04466913700838754,
+    "macd_histogram": 0.039175842087653796,
+    "price_vs_ma14": 0.036949270812508324,
+    "price_change_6h": 0.028283848618607155,
+    "pct_from_ath": 0.027449089658911654,
+    "volatility_14d": 0.025731467436097798,
+    "volatility_30d": 0.024055176020674595,
+    "days_since_ath": 0.022341582725348877,
+    "volume_24h": 0.019802836441919613,
+    "volume_ma_7": 0.01697117652789751,
+    "price_vs_ma7": 0.01672899882361789,
+    "bb_upper": 0.014902891311416432,
+    "ma_30": 0.013124792331100013
+  },
+  "model_type": "RandomForestClassifier",
+  "n_estimators": 200,
+  "max_depth": 15
+}

@@ -1,0 +1,19 @@
+# PulseScore ML Dependencies
+
+# Core ML
+scikit-learn>=1.4.0
+pandas>=2.2.0
+numpy>=1.26.0
+joblib>=1.4.0
+
+# API
+fastapi>=0.115.0
+uvicorn[standard]>=0.34.0
+pydantic>=2.10.0
+
+# Data
+requests>=2.32.0
+
+# Utilities
+python-dateutil>=2.9.0
+tqdm>=4.67.0

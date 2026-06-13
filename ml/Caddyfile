@@ -1,0 +1,15 @@
+# Caddyfile for PulseScore API
+# Replace pulsecycle.pro with your domain or use the Oracle instance IP
+
+# Option 1: With domain (recommended)
+# pulsecycle.pro {
+#     reverse_proxy localhost:8000
+# }
+
+# Option 2: Direct IP with auto-HTTPS
+:80 {
+    reverse_proxy localhost:8000
+}
+
+# Caddy auto-generates HTTPS certs via Let's Encrypt
+# For IP-only access, use http:// (no cert needed for IP)

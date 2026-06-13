@@ -1,0 +1,47 @@
+{
+  "PLSX": {
+    "price_usd": 4.515e-06,
+    "price_change_1h": 1.79,
+    "price_change_6h": 3.09,
+    "price_change_24h": 5.09,
+    "volume_6h": 7124.23,
+    "volume_24h": 111071.63,
+    "liquidity_usd": 1249708.08,
+    "market_cap": 638243700.0,
+    "txns_24h_buys": 1123,
+    "txns_24h_sells": 1057,
+    "contract_age_days": 1127,
+    "dex": "pulsex",
+    "pair_address": "0x1b45b9148791d3a104184Cd5DFE5CE57193a3ee9"
+  },
+  "HEX": {
+    "price_usd": 0.0008599,
+    "price_change_1h": 1.55,
+    "price_change_6h": 3.25,
+    "price_change_24h": 5.77,
+    "volume_6h": 5021.91,
+    "volume_24h": 101283.69,
+    "liquidity_usd": 311088.87,
+    "market_cap": 44097275.0,
+    "txns_24h_buys": 1015,
+    "txns_24h_sells": 1420,
+    "contract_age_days": 1107,
+    "dex": "pulsex",
+    "pair_address": "0x19BB45a7270177e303DEe6eAA6F5Ad700812bA98"
+  },
+  "INC": {
+    "price_usd": 0.2711,
+    "price_change_1h": 1.26,
+    "price_change_6h": 2.51,
+    "price_change_24h": 5.01,
+    "volume_6h": 1643.46,
+    "volume_24h": 21913.92,
+    "liquidity_usd": 383653.01,
+    "market_cap": 15167469.0,
+    "txns_24h_buys": 212,
+    "txns_24h_sells": 376,
+    "contract_age_days": 1127,
+    "dex": "pulsex",
+    "pair_address": "0xf808Bb6265e9Ca27002c0A04562Bf50d4FE37EAA"
+  }
+}
