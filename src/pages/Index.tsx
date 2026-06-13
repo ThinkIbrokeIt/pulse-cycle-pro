@@ -77,7 +77,7 @@ const Index = () => {
         <div className="container mx-auto px-6 py-20 relative">
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-block mb-6">
-              <span className="bg-gradient-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-medium animate-pulse-glow">
+              <span className="bg-gradient-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-medium shadow-glow">
                 AI-Powered Cycle Predictions
               </span>
             </div>
@@ -119,7 +119,7 @@ const Index = () => {
             </div>
 
             <div className="mt-12 text-center">
-              <ChevronDown className="h-8 w-8 text-muted-foreground animate-bounce mx-auto" />
+              <ChevronDown className="h-8 w-8 text-muted-foreground mx-auto" />
             </div>
           </div>
         </div>
