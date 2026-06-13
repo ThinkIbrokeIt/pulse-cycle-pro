@@ -13,13 +13,13 @@ const queryClient = new QueryClient();
 
 const wagmiAdapter = new WagmiAdapter({
   networks: [pulsechain, pulsechainV4],
-  projectId: "pulsecycle-pro",
+  projectId: "259d94965e77d4b71189558d44695aad",
 });
 
 createAppKit({
   adapters: [wagmiAdapter],
   networks: [pulsechain, pulsechainV4],
-  projectId: "pulsecycle-pro",
+  projectId: "259d94965e77d4b71189558d44695aad",
   features: {
     analytics: false,
     email: false,
