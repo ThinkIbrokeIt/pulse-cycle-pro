@@ -4,20 +4,23 @@ import { PulseScore } from "@/components/PulseScore";
 import { CycleChart } from "@/components/CycleChart";
 import { FeatureCard } from "@/components/FeatureCard";
 import { Link } from "react-router-dom";
-import { 
-  TrendingUp, 
-  BarChart3, 
-  Bell, 
-  Zap, 
-  Shield, 
+import {
+  TrendingUp,
+  BarChart3,
+  Bell,
+  Zap,
+  Shield,
   Database,
   ChevronDown,
   Search,
-  Navigation,
   Code,
   Users,
-  Lock
+  Lock,
+  Heart,
+  ExternalLink,
 } from "lucide-react";
+
+const DONATION_ADDRESS = "0x45bb318ae758c1bb8074389d899cb25468e18d09";
 
 const Index = () => {
   return (
@@ -47,6 +50,18 @@ const Index = () => {
               Meme Security
             </Button>
           </Link>
+          <Link to="/trustless-locks">
+            <Button variant="ghost" className="hidden md:flex items-center gap-2">
+              <Lock className="h-4 w-4" />
+              Trustless Locks
+            </Button>
+          </Link>
+          <Link to="/support">
+            <Button variant="ghost" className="hidden md:flex items-center gap-2">
+              <Heart className="h-4 w-4" />
+              Support
+            </Button>
+          </Link>
           <Link to="/pulse-insight">
             <Button variant="outline" className="flex items-center gap-2">
               <Search className="h-4 w-4" />
@@ -63,20 +78,20 @@ const Index = () => {
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-block mb-6">
               <span className="bg-gradient-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-medium animate-pulse-glow">
-                ⚡ AI-Powered Cycle Predictions
+                AI-Powered Cycle Predictions
               </span>
             </div>
-            
+
             <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 animate-slide-up">
               <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 PulseCycle Pro
               </span>
             </h1>
-            
+
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto animate-slide-up">
               Advanced cycle analytics for PulseChain. Predict market peaks with 92% accuracy using ML-powered historical pattern recognition. Completely free for the community.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
               <Link to="/pulse-insight">
                 <Button variant="pro" size="lg" className="text-lg">
@@ -102,7 +117,7 @@ const Index = () => {
                 </Button>
               </Link>
             </div>
-            
+
             <div className="mt-12 text-center">
               <ChevronDown className="h-8 w-8 text-muted-foreground animate-bounce mx-auto" />
             </div>
@@ -120,7 +135,7 @@ const Index = () => {
             Monitor cycle phases, track predictions, and get alerts for optimal entry/exit points
           </p>
         </div>
-        
+
         {/* PulseScore Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
           <PulseScore score={87} symbol="PLS" change24h={12.4} phase="Accumulation" />
@@ -128,7 +143,7 @@ const Index = () => {
           <PulseScore score={65} symbol="INC" change24h={-3.2} phase="Distribution" />
           <PulseScore score={34} symbol="HEX" change24h={-8.9} phase="Downtrend" />
         </div>
-        
+
         {/* Main Chart */}
         <CycleChart />
       </div>
@@ -143,11 +158,11 @@ const Index = () => {
             Powered by 5+ years of historical data and cutting-edge ML algorithms
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <FeatureCard
             icon={<TrendingUp className="h-8 w-8" />}
-            title="PulseScore™ Algorithm"
+            title="PulseScore Algorithm"
             description="Proprietary scoring system that analyzes 50+ metrics to predict cycle phases with 92% accuracy"
             highlight
           />
@@ -189,7 +204,7 @@ const Index = () => {
             PulseCycle Pro is completely free to help the PulseChain community make better trading decisions
           </p>
         </div>
-        
+
         <div className="max-w-4xl mx-auto">
           <Card className="p-8 bg-gradient-glow border-primary/30">
             <div className="text-center">
@@ -206,7 +221,7 @@ const Index = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-primary rounded-full"></div>
-                    <span className="text-foreground">Advanced PulseScore™ analytics</span>
+                    <span className="text-foreground">Advanced PulseScore analytics</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-primary rounded-full"></div>
@@ -246,22 +261,56 @@ const Index = () => {
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
             Join thousands of traders using PulseCycle Pro to time their entries and exits perfectly - completely free!
           </p>
-          <Link to="/pulse-insight">
-            <Button variant="pro" size="lg" className="text-lg">
-              Access PulseCycle Pro Now
-            </Button>
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/pulse-insight">
+              <Button variant="pro" size="lg" className="text-lg">
+                Access PulseCycle Pro Now
+              </Button>
+            </Link>
+            <Link to="/support">
+              <Button variant="outline" size="lg" className="text-lg gap-2">
+                <Heart className="h-4 w-4" />
+                Support This Project
+              </Button>
+            </Link>
+          </div>
         </Card>
       </div>
 
       {/* Footer */}
       <footer className="border-t border-card-border">
         <div className="container mx-auto px-6 py-12">
-          <div className="text-center text-muted-foreground">
-            <p className="mb-4">© 2024 PulseCycle Pro. All rights reserved.</p>
-            <p className="text-sm">
-              Advanced analytics for PulseChain • Built with precision • Powered by AI
-            </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <h4 className="text-sm font-semibold text-foreground mb-3">PulseCycle Pro</h4>
+              <p className="text-sm text-muted-foreground">
+                AI-powered cycle analytics for PulseChain. Free for the community.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-sm font-semibold text-foreground mb-3">Quick Links</h4>
+              <div className="space-y-2">
+                <Link to="/pulse-insight" className="block text-sm text-muted-foreground hover:text-primary">Pulse Insight</Link>
+                <Link to="/meme-coins" className="block text-sm text-muted-foreground hover:text-primary">Security Center</Link>
+                <Link to="/trustless-locks" className="block text-sm text-muted-foreground hover:text-primary">Trustless Locks</Link>
+                <Link to="/community" className="block text-sm text-muted-foreground hover:text-primary">Community</Link>
+              </div>
+            </div>
+            <div>
+              <h4 className="text-sm font-semibold text-foreground mb-3">Support</h4>
+              <p className="text-sm text-muted-foreground mb-3">
+                Love the tools? Help us build more.
+              </p>
+              <Link to="/support">
+                <Button size="sm" variant="outline" className="gap-2">
+                  <Heart className="h-3 w-3" />
+                  Donate PLS
+                </Button>
+              </Link>
+            </div>
+          </div>
+          <div className="border-t border-card-border pt-6 text-center text-sm text-muted-foreground">
+            <p>PulseCycle Pro 2024 — Built for the PulseChain community. No VCs, no tokens, no subscriptions.</p>
           </div>
         </div>
       </footer>

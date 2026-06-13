@@ -9,6 +9,7 @@ import Community from "./pages/Community";
 import MemeCoins from "./pages/MemeCoins";
 import TrustlessLocks from "./pages/TrustlessLocks";
 import EmbedPage from "./pages/EmbedPage";
+import Support from "./pages/Support";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/meme-coins" element={<MemeCoins />} />
           <Route path="/trustless-locks" element={<TrustlessLocks />} />
           <Route path="/embed" element={<EmbedPage />} />
+          <Route path="/support" element={<Support />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
