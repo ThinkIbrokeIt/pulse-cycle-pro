@@ -1,19 +1,19 @@
-# PulseScore ML Dependencies
+# PulseScore ML Dependencies — Python 3.9 compatible versions
 
 # Core ML
-scikit-learn>=1.4.0
-pandas>=2.2.0
-numpy>=1.26.0
-joblib>=1.4.0
+scikit-learn==1.4.2
+pandas==2.1.5
+numpy==1.26.4
+joblib==1.4.2
 
 # API
-fastapi>=0.115.0
-uvicorn[standard]>=0.34.0
-pydantic>=2.10.0
+fastapi==0.109.2
+uvicorn[standard]==0.27.1
+pydantic==2.5.3
 
 # Data
-requests>=2.32.0
+requests==2.31.0
 
 # Utilities
-python-dateutil>=2.9.0
-tqdm>=4.67.0
+python-dateutil==2.8.2
+tqdm==4.66.2
