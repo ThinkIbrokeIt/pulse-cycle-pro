@@ -24,7 +24,9 @@ import {
   Brain,
   Home
 } from 'lucide-react';
-import { CycleChart } from '@/components/CycleChart';
+import { CycleChart } from "@/components/CycleChart";
+import { TipWall } from "@/components/TipWall";
+import { useWallet } from "@/contexts/WalletContext";
 
 interface CoinData {
   symbol: string;
@@ -51,6 +53,10 @@ const PulseInsight = () => {
   const [aiLoading, setAiLoading] = useState(false);
   const [mlApiAvailable, setMlApiAvailable] = useState(false);
   const [mlLoading, setMlLoading] = useState(false);
+  const [showTipWall, setShowTipWall] = useState(false);
+  const [searchCount, setSearchCount] = useState(0);
+  const { isConnected, tipSent } = useWallet();
+  const PREMIUM_UNLOCKED = tipSent || searchCount < 3; // free tier: 3 searches
 
   // Check for token parameter in URL
   useEffect(() => {
@@ -157,8 +163,15 @@ const PulseInsight = () => {
 
   const searchCoin = async (query: string) => {
     if (!query.trim()) return;
-    
+
+    // Premium gate: free users get 3 searches, then tip wall
+    if (!PREMIUM_UNLOCKED) {
+      setShowTipWall(true);
+      return;
+    }
+
     setLoading(true);
+    setSearchCount((c) => c + 1);
     track('token_search', { token: query.trim() });
     
     try {
@@ -570,6 +583,13 @@ const PulseInsight = () => {
           </Card>
         )}
       </div>
+
+      {/* Tip Wall Modal */}
+      <TipWall
+        isOpen={showTipWall}
+        onClose={() => setShowTipWall(false)}
+        onUnlock={() => setSearchCount(0)}
+      />
     </div>
   );
 };
